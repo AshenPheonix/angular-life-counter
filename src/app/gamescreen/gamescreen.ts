@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { Health } from '../services/health';
 import { Message } from '../services/message';
 
@@ -8,7 +8,7 @@ import { Message } from '../services/message';
   templateUrl: './gamescreen.html',
   styleUrl: './gamescreen.css'
 })
-export class Gamescreen {
+export class Gamescreen implements OnInit{
   hp:number = 0
   player = input<string>();
   standby:number =0
@@ -30,7 +30,13 @@ export class Gamescreen {
       case 'p4':
         this.hp == health.p4
         break;
-    }
+      }
+      console.log(`from ${this.player} i get ${this.hp} and ${this.player.toString()}`)
+  }
+
+  ngOnInit(){
+    console.log(`here ${this.player}`);
+
   }
 
   onDam(dir:string) {
