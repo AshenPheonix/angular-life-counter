@@ -10,8 +10,13 @@ import { Message } from '../services/message';
 })
 export class Gamescreen {
   hp:number = 0
-  player = input.required<string>();
-  constructor(public health: Health, public messager:Message){
+  player = input<string>();
+  standby:number =0
+
+  constructor(public health: Health){
+    if(!this.player){
+      return
+    }
     switch (this.player.toString()){
       case 'p1':
         this.hp == health.p1
@@ -25,6 +30,19 @@ export class Gamescreen {
       case 'p4':
         this.hp == health.p4
         break;
+    }
+  }
+
+  onDam(dir:string) {
+    switch(dir){
+      case  '-':
+        this.standby-=1;
+        break;
+      case '+':
+        this.standby+=1;
+        break;
+      default:
+        console.log('could not read request')
     }
   }
 }
