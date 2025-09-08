@@ -13,30 +13,31 @@ export class Gamescreen implements OnInit{
   player = input<string>();
   standby:number =0
 
-  constructor(public health: Health){
+  constructor(public health: Health){}
+
+  ngOnInit(){
     if(!this.player){
       return
     }
-    switch (this.player.toString()){
+    console.log(`here ${this.player}, ${this.player.toString()}`);
+    switch (this.player()){
       case 'p1':
-        this.hp == health.p1
+        this.hp == this.health.p1
+    console.log(this.hp)
         break
       case 'p2':
-        this.hp == health.p2
+        this.hp == this.health.p2
         break;
       case 'p3':
-        this.hp == health.p2
+        this.hp == this.health.p2
         break;
       case 'p4':
-        this.hp == health.p4
+        this.hp == this.health.p4
         break;
+      default:
+          console.log(`broken, ${this.player()}`)
+          break;
       }
-      console.log(`from ${this.player} i get ${this.hp} and ${this.player.toString()}`)
-  }
-
-  ngOnInit(){
-    console.log(`here ${this.player}`);
-
   }
 
   onDam(dir:string) {
