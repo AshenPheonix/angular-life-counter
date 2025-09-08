@@ -10,8 +10,9 @@ import { Message } from '../services/message';
 })
 export class Gamescreen implements OnInit{
   hp:number = 0
-  player = input<string>();
+  player = input<string>('');
   standby:number =0
+  timer:number=0
 
   constructor(public health: Health){}
 
@@ -19,23 +20,21 @@ export class Gamescreen implements OnInit{
     if(!this.player){
       return
     }
-    console.log(`here ${this.player}, ${this.player.toString()}`);
     switch (this.player()){
       case 'p1':
-        this.hp == this.health.p1
-    console.log(this.hp)
+        this.hp = this.health.p1
         break
       case 'p2':
-        this.hp == this.health.p2
+        this.hp = this.health.p2
         break;
       case 'p3':
-        this.hp == this.health.p2
+        this.hp = this.health.p2
         break;
       case 'p4':
-        this.hp == this.health.p4
+        this.hp = this.health.p4
         break;
       default:
-          console.log(`broken, ${this.player()}`)
+
           break;
       }
   }
@@ -50,6 +49,14 @@ export class Gamescreen implements OnInit{
         break;
       default:
         console.log('could not read request')
+    }
+    if(this.standby!=0){
+      clearTimeout(this.timer)
+      console.log('fired', this.standby)
+      this.timer=setTimeout(()=>{
+        console.log('boing');
+        this.health.damage(this.player(), this.standby)
+      }, 1000)
     }
   }
 }

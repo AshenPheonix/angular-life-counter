@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class Health {
-  p1:number=40;
-  p2:number=40;
-  p3:number=40;
-  p4:number=40;
+  'p1':number=40;
+  'p2':number=40;
+  'p3':number=40;
+  'p4':number=40;
 
   damage(who:string, count: number){
     switch(who){

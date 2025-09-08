@@ -13,4 +13,12 @@ describe('Health', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should have set the hp bars', ()=>{
+    TestBed.configureTestingModule({})
+    expect(service.p1).toBeTruthy()
+    expect(service.p2).toBeTruthy()
+    expect(service.p3).toBeTruthy()
+    expect(service.p4).toBeTruthy()
+  })
 });
