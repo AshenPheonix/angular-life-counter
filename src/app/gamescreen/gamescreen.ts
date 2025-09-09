@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, InputSignal, OnChanges, OnInit } from '@angular/core';
 import { Health } from '../services/health';
 import { Message } from '../services/message';
 
@@ -8,36 +8,12 @@ import { Message } from '../services/message';
   templateUrl: './gamescreen.html',
   styleUrl: './gamescreen.css'
 })
-export class Gamescreen implements OnInit{
-  hp:number = 0
-  player = input<string>('');
+export class Gamescreen{
+  player: InputSignal<string> = input<string>('');
   standby:number =0
   timer:number=0
 
   constructor(public health: Health){}
-
-  ngOnInit(){
-    if(!this.player){
-      return
-    }
-    switch (this.player()){
-      case 'p1':
-        this.hp = this.health.p1
-        break
-      case 'p2':
-        this.hp = this.health.p2
-        break;
-      case 'p3':
-        this.hp = this.health.p2
-        break;
-      case 'p4':
-        this.hp = this.health.p4
-        break;
-      default:
-
-          break;
-      }
-  }
 
   onDam(dir:string) {
     switch(dir){
@@ -54,9 +30,11 @@ export class Gamescreen implements OnInit{
       clearTimeout(this.timer)
       console.log('fired', this.standby)
       this.timer=setTimeout(()=>{
-        console.log('boing');
         this.health.damage(this.player(), this.standby)
+        this.standby=0;
       }, 1000)
+    } else{
+      clearTimeout(this.timer);
     }
   }
 }

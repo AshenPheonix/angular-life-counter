@@ -4,34 +4,26 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class Health {
-  'p1':number=40;
-  'p2':number=40;
-  'p3':number=40;
-  'p4':number=40;
+
+  players =new Map([
+    ['p1',40],
+    ['p1',40],
+    ['p2',40],
+    ['p3',40],
+    ['p4', 40]
+  ])
+
 
   damage(who:string, count: number){
-    switch(who){
-      case 'p1':
-        this.p1 += count;
-        break;
-      case 'p2':
-        this.p2 += count;
-        break;
-      case 'p3':
-        this.p3 += count;
-        break;
-      case 'p4':
-        this.p4 += count;
-        break;
-      default:
-        console.log('could not read, plase try again', who);
-    }
+    this.players.set(who,
+      <number>this.players.get(who) + count
+    )
   }
 
   reset(){
-    this.p1 = 40;
-    this.p2 = 40;
-    this.p3 = 40;
-    this.p4 = 40;
+    this.players.set('p1', 40);
+    this.players.set('p2', 40)
+    this.players.set('p3', 40)
+    this.players.set('p4', 40)
   }
 }

@@ -1,3 +1,5 @@
-<button (click)="onDam('-')"> - </button>
-<section>{{hp}}</section>
-<button (click)="onDam('+')"> + </button>
+<section class="container">
+  <button (click)="onDam('-')"> - </button>
+  <section>{{health.players.get(player())}}</section>
+  <button (click)="onDam('+')"> + </button>
+</section>
