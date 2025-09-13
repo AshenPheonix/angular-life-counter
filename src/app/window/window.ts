@@ -8,5 +8,14 @@ import { Message } from '../services/message';
   styleUrl: './window.css'
 })
 export class Window {
+  display = `display: none;`
   constructor(public serv:Message){}
+
+  toggle(){
+    if(this.display){
+      this.display = ''
+    }else{
+      this.display = `display: none;`
+    }
+  }
 }
