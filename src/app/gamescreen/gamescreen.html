@@ -1,5 +1,6 @@
-<section class="container">
+<section class="container" [style]="getRotation()">
   <button (click)="onDam('-')"> - </button>
+  <label animate.enter="floating">{{standby}}</label>
   <section>{{health.players.get(player())}}</section>
   <button (click)="onDam('+')"> + </button>
 </section>

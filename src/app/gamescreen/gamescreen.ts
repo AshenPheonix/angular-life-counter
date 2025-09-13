@@ -1,4 +1,4 @@
-import { Component, input, InputSignal, OnChanges, OnInit } from '@angular/core';
+import { Component, inject, input, InputSignal, OnChanges, OnInit } from '@angular/core';
 import { Health } from '../services/health';
 import { Message } from '../services/message';
 
@@ -10,10 +10,19 @@ import { Message } from '../services/message';
 })
 export class Gamescreen{
   player: InputSignal<string> = input<string>('');
+  rotation: InputSignal<string> = input<string>('');
   standby:number =0
   timer:number=0
+  css=''
+  health = inject(Health);
 
-  constructor(public health: Health){}
+  getRotation(){
+    return  `transform:rotate(${this.rotation() || '0'})`
+  }
+
+  fly(){
+
+  }
 
   onDam(dir:string) {
     switch(dir){

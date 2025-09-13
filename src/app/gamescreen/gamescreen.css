@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-around;
   height: 48vh;
+  border: 2px outset black;
 }
 section{
   font-size: xx-large;
@@ -13,4 +14,27 @@ button{
   border-radius: 50%;
   padding: .75em;
   align-items: center;
+}
+
+label{
+  position: fixed;
+  right:33rem;
+  opacity: 0;
+}
+
+.floating{
+  animation: rise 1s;
+}
+
+@keyframes rise{
+  from{
+    opacity: 0;
+    right:33rem;
+    bottom:50%;
+  }
+  to{
+    opacity: 100;
+    bottom:75%;
+    right:33rem;
+  }
 }
